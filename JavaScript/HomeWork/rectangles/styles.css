@@ -1,0 +1,20 @@
+#blue{
+    border: 2px dotted blue;
+    border-radius: 7px;
+    padding: 15px;
+}
+#red{
+    border: 2px dashed red;
+    border-radius: 7px;
+    padding: 15px;
+}
+#green{
+    border: 2px solid green;
+    border-radius: 7px;
+    padding: 15px;
+}
+
+p{
+    text-align: center;
+    font-size: 30px;
+}
