@@ -19,5 +19,5 @@ module.exports = function (sequelize) {
         timestamps: false
     });
 
-    return Project;
+    return Report;
 };

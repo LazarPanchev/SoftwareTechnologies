@@ -17,8 +17,11 @@ class ReportController extends Controller
      */
     public function index(Request $request)
     {
-		//TODO
-        return null;
+        $reports = $this
+            ->getDoctrine()
+            ->getRepository(Report::class)
+            ->findAll();
+        return $this->render("report/index.html.twig", ['reports' => $reports]);
     }
 
     /**
@@ -30,8 +33,11 @@ class ReportController extends Controller
      */
     public function details($id, Request $request)
     {
-		//TODO
-       return null;
+        $report = $this
+            ->getDoctrine()
+            ->getRepository(Report::class)
+            ->find($id);
+        return $this->render("report/details.html.twig", ['report' => $report]);
     }
 
     /**
@@ -41,8 +47,18 @@ class ReportController extends Controller
      */
     public function create(Request $request)
     {
-		//TODO
-        return null;
+        $report = new Report();
+        $form = $this->createForm(ReportType::class, $report);
+        $form->handleRequest($request);
+        //POST REQUEST
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($report);
+            $em->flush();
+            return $this->redirect('/');
+        }
+        //GET REQUEST
+        return $this->render("report/create.html.twig", ["form" => $form->createView()]);
     }
 
     /**
@@ -54,7 +70,25 @@ class ReportController extends Controller
      */
     public function delete($id, Request $request)
     {
-		//TODO
-        return null;
+        $report = $this
+            ->getDoctrine()
+            ->getRepository(Report::class)
+            ->find($id);
+        $form = $this->createForm(ReportType::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $em = $this->getDoctrine()
+                ->getManager();
+            $em->remove($report);
+            $em->flush();
+
+            return $this->redirect('/');
+
+        }
+        return $this->render('report/delete.html.twig',
+            [
+                'report' => $report,
+                'form' => $form->createView()
+            ]);
     }
 }

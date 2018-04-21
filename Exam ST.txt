@@ -1,0 +1,78 @@
+JAVASCRIPT
+1. npm install
+2. Shift Shift - ToDo
+3. Create Database by hand using HeidiSQL - from config.js
+4. ToDo in Model using sequelize
+5. (no Id) it generate it auto 
+6. START edit configuration: Node.js:  bin/www
+7. FLOAT and Sequelize.DOUBLE
+NOTES: if in the view is report['status']-   req.body.report
+                                status   -   req.body
+		
+       if in the view details is {{status}} or {{this.priority}   - res.render("report/delete", report.dataValues	
+	                              else                                    report
+								  
+		if in the view create for POST is  name=product[priority] - let args=req.params.product
+                                                       "priority" - let args=req.params	
+								  
+
+PHP
+1.composer install
+2.Create Database
+    php bin/console doctrine:database:create --if-not-exists
+3.Delete Entity in src/AppBundle/Entity/Project.php 
+4. Create Entity using Doctrine  (no Id- generate it auto)
+    php bin/console doctrine:generate:entity
+	AppBundle:Project
+	if -> double : use (float) or decimal
+5.If ToDo Form: 
+    php bin/console doctrine:generate:form AppBundle:Report
+    IMPORTANT: after generate if to delete the last metod in the Form -prefix or something like that!!!	public function getBlockPrefix()
+6. php bin/console doctrine:schema:update --force
+7. Controller
+  if in view {{report.message}} - return $this->render("report/details.html.twig", ['report' => $report]);
+8. START php bin/console server:run
+    or edit configuration: PHP Script: File ....\bin\console   Arguments server:run
+9.Hint: bin/console doctrine -> all combinations
+database is in parameters.yml
+	
+	
+	
+JAVA
+1. Import project
+2. ToDo	
+3. Entity
+   First - id - private Integer Id
+   if double - use Double
+   Getters and Setters
+   Constructor with every entity
+   Constructor - empty
+   Annotations     above getters and setters or above private!!!
+                   id- @Id   - from java persistance
+                   @GeneratedValue(strategy = GenerationType.IDENTITY)
+				   .............
+				   @Column(nullable = false)			   
+                    ...........
+					on int-no annotations!!!!					
+	Binding model- without Id!!!
+	        annotations- @NotNull
+            getters and setters
+            constructors-with every
+            constructors-empty			
+Hint- Binding Model is the data from Form   
+4.Controller
+5. repository- TaskRepository!!!
+6.START: edit configuration: Spring Boot-TeisterMaskApplication: Main class : teistermask.TeisterMaskApplication
+
+
+C#
+1.Start sln-file
+2. Model
+  First Id!!!
+  if double-use double
+  Annotations 
+        [Required]
+3.Controller
+database is in dbContext
+
+                                 

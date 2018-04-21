@@ -17,23 +17,28 @@
         [Route("")]
         public IActionResult Index()
         {
-            return null;
+            var reports = dbContext.Reports.ToList();
+
+            return View(reports);
         }
 
         [HttpGet]
         [Route("details/{id}")]
         public IActionResult Details(int id)
         {
-			//TODO
-            return null;
+            var report = dbContext
+                .Reports
+                .Where(r => r.Id == id)
+                .FirstOrDefault();
+
+            return View(report);
         }
 
         [HttpGet]
         [Route("create")]
         public IActionResult Create()
         {
-			//TODO
-            return null;
+            return View();
         }
 
         [HttpPost]
@@ -41,16 +46,21 @@
         [ValidateAntiForgeryToken]
         public IActionResult Create(Report report)
         {
-			//TODO
-            return null;
+            dbContext.Reports.Add(report);
+            dbContext.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         [Route("delete/{id}")]
         public IActionResult Delete(int id)
         {
-			//TODO
-            return null;
+            Report report = dbContext
+                .Reports
+                .Where(p => p.Id == id)
+                .FirstOrDefault();
+
+            return View(report);
         }
 
         [HttpPost]
@@ -58,8 +68,9 @@
         [ValidateAntiForgeryToken]
         public IActionResult DeleteConfirm(Report reportModel)
         {
-			//TODO
-            return null;
+            dbContext.Reports.Remove(reportModel);
+            dbContext.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
