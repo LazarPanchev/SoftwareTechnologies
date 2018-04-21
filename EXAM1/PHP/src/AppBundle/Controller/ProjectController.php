@@ -63,7 +63,7 @@ class ProjectController extends Controller
 
         if($form->isSubmitted()){     //POST REQUEST
             $em=$this->getDoctrine()->getManager();
-            $em->persist($project);
+            $em->merge($project);
             $em->flush();
 
             return $this->redirect('/');
